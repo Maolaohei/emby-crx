@@ -1,75 +1,51 @@
 class CommonUtils {
-	static selectWait(selector, func, times, interval) {
-		var _times = times || 100, //100次
-			_interval = interval || 500, //20毫秒每次
-			_jquery = null,
-			_iIntervalID;
-
-		_iIntervalID = setInterval(() => {
-			if (!_times) {
+	static selectWait(selector, func, times = 100, interval = 500) {
+		let _jquery;
+		const _iIntervalID = setInterval(() => {
+			if (!times) {
 				clearInterval(_iIntervalID);
+				return;
 			}
-			_times <= 0 || _times--;
+			times--;
 			_jquery = $(selector);
 			if (_jquery.length) {
-				func && func.call(func);
+				typeof func === 'function' && func();
 				clearInterval(_iIntervalID);
 			}
-		}, _interval);
+		}, interval);
 		return this;
 	}
 
-	static selectNotWait(selector, func, interval) {
-		let _jquery,
-			_interval = interval || 20,
-			_iIntervalID;
-
-		_iIntervalID = setInterval(() => {
-			_jquery = $(selector);
-			if (_jquery.length < 1) {
-				func && func.call(func);
+	static selectNotWait(selector, func, interval = 20) {
+		const _iIntervalID = setInterval(() => {
+			if ($(selector).length < 1) {
+				typeof func === 'function' && func();
 				clearInterval(_iIntervalID);
 			}
-		}, _interval);
+		}, interval);
 	}
 
 	static copyText(value, cb) {
 		const textarea = document.createElement("textarea");
-		textarea.readOnly = "readonly";
-		textarea.style.position = "absolute";
-		textarea.style.left = "-9999px";
-		textarea.value = value;
+		Object.assign(textarea, {
+			readOnly: true,
+			value,
+			style: {
+				position: "absolute",
+				left: "-9999px"
+			}
+		});
+		
 		document.body.appendChild(textarea);
 		textarea.select();
 		textarea.setSelectionRange(0, textarea.value.length);
 		document.execCommand("Copy");
 		document.body.removeChild(textarea);
-		if (cb && Object.prototype.toString.call(cb) === "[object Function]") {
-			cb();
-		}
+		
+		typeof cb === 'function' && cb();
 	}
 
-	/**
-	 * 休眠
-	 * @param {number} ms 休眠多少毫秒
-	 */
 	static sleep(ms) {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve("完成");
-			}, ms);
-		});
+		return new Promise(resolve => setTimeout(resolve, ms));
 	}
-
-	static checkType() {
-		if (navigator && navigator.userAgent && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-			if (navigator && navigator.userAgent && /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-				return 'ios';
-			} else {
-				return 'android';
-			}
-		} else {
-			return 'pc';
-		}
-	};
 }
