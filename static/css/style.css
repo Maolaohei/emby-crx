@@ -13,7 +13,7 @@
 }
 
 .view:not(.hide) .skinHeader, .skinHeader-withBackground.headroom-scrolling {
-	width: auto;
+	width: 100%;
 	background-image: linear-gradient(black, transparent) !important;
 	background-color: unset !important;
 }
@@ -54,13 +54,9 @@
 	text-decoration: none;
 }
 
-.view:not(.hide) .section0 .cardOverlayContainer {
-	background: none;
-}
-
-.view:not(.hide) .section0 .cardOverlayContainer label,
+.view:not(.hide) .section0 .cardOverlayContainer,
 .view:not(.hide) .section0 .sectionTitleContainer {
-	display: none !important;
+	display: none;
 }
 
 .view:not(.hide) .section0 .cardBox-touchzoom {
@@ -103,8 +99,6 @@
 	max-height: 100vh;
 	user-select: none;
 	object-fit: cover;
-	-webkit-mask-image: linear-gradient(to top, transparent 0%, black 30%);
-	mask-image: linear-gradient(to top, transparent 0%, black 30%);
 }
 
 .misty-banner-logo {
@@ -197,8 +191,7 @@
 	height: -webkit-fill-available;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	box-sizing: border-box;
+	justify-content: center
 }
 
 .misty-banner-info > * {
@@ -227,9 +220,10 @@
 	text-shadow: 0 4px 10px rgb(0 0 0 / 20%);
 	/* margin-bottom: clamp(0rem, -.545rem + 2.73vw, 1.5rem); */
 	max-width: 80%;
-	white-space: nowrap;
+	display: -webkit-box !important;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
 	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 .misty-banner-info p {
@@ -269,33 +263,23 @@
 
 @media screen and (max-width: 62.5em) {
 	.misty-banner-info button {
-		position: absolute;
-		right: 2rem;
-		bottom: 2rem;
+		margin-top: 0;
+	}
+}
+@media screen and (max-width: 52em) {
+	.misty-banner-info button,
+	.misty-banner-info p {
+		display: none;
 	}
 }
 
 @media screen and (max-width: 35em) {
-	.misty-banner-info{
-		height: auto;
-		bottom: 0;
-		top: unset;
-
-		> div > p {
-			font-size: 1rem;
-		}
-
-		button{
-			transition-duration: 0s;
-			transition-delay: 0s;
-		}
-	}
+	.misty-banner-info,
 	.misty-banner-logo 	{
 		display: none !important;
 	}
-
-	.section0>div>div>.backdropCard {
-		--backdrop-cards: 1.5;
+	.misty-banner-body{
+		opacity: 0;
 	}
 }
 
@@ -313,4 +297,12 @@
 
 .misty-banner-library-overflow {
 	overflow: visible !important;
+}
+.cardTextActionButton {
+    width: 100% !important;
+    top: 33% !important;
+    text-align: left !important;
+    margin-left: 1rem !important;
+    left: 0 !important;
+    transform: translateX(0) !important;
 }
