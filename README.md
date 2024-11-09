@@ -3,7 +3,9 @@
 _Emby 增强/美化 插件 (适用于 Chrome 内核浏览器)_
 
 原项目:https://github.com/Nolovenodie/emby-crx 介于已经长久未更新，手动维护一个自用版本。
+
 目前已经修复问题：
+
 1.首页分类标题字体错位
 
 ---
