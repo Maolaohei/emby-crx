@@ -1,6 +1,6 @@
 # Emby Crx 第三方自用版本
 
-_Emby 增强/美化 插件 (适用于 Chrome 内核浏览器)_
+_Emby 增强/美化 插件 (适用于 Chrome 和 Firefox 内核浏览器)_
 
 原项目:https://github.com/Nolovenodie/emby-crx 介于原项目长久未更新，手动维护一个自用版本。
 
@@ -16,6 +16,9 @@ _Emby 增强/美化 插件 (适用于 Chrome 内核浏览器)_
 
 
 ---
+
+
+以下为原README.MD
 
 ## 动画预览 (因 LOGO 入场动画过于优先, 效果可能略差, 最新版已更改, 视频等待更新, 具体效果可以自行尝试)
 
